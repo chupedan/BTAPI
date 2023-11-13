@@ -1,6 +1,6 @@
 // ------------------Method: POST------------------
 
-let url = 'https://api.sheety.co/43f2a026e71c03344292f196d03fad25/youflix/videos';
+let url = 'https://api.sheety.co/43f2a026e71c03344292f196d03fad25/youflix/videos/2';
 
 // let body = {
 //     video:
@@ -30,57 +30,51 @@ let url = 'https://api.sheety.co/43f2a026e71c03344292f196d03fad25/youflix/videos
 //         console.log('Error: ' + err);
 //     });
 
-//
+// -------------------- Promise post---------------
 
-function postData(url, data) {
-    return new Promise((resolve, reject) => {
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // Các headers khác nếu cần thiết
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                resolve(data);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+// function postData(url, data) {
+//     return new Promise((resolve, reject) => {
+//         fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 // Các headers khác nếu cần thiết
+//             },
+//             body: JSON.stringify(data),
+//         })
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error(`HTTP error! Status: ${response.status}`);
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 resolve(data);
+//             })
+//             .catch(error => {
+//                 reject(error);
+//             });
+//     });
+// }
 
-const data = {
-    video:
-        [
-            {
-                "name": "Why cartoon characters wear gloves",
-                "url": "https://www.youtube.com/watch?v=3R3cvbLsbAk",
-                "category": "Design",
-                "id": 12
-            },
-            {
-                "name": "TENET - Official Trailer",
-                "url": "https://www.youtube.com/watch?v=LdOM0x0XDMo",
-                "category": "Cinema",
-                "id": 13
-            }
-        ]
-}
-postData(url, data)
-    .then(responseData => {
-        console.log('Dữ liệu đã được gửi thành công:', responseData.video);
-    })
-    .catch(error => {
-        console.error('Lỗi khi gửi dữ liệu:', error);
-    });
+// const data = {
+//     video:
+//     {
+//         "name": "Why cartoon characters wear gloves",
+//         "url": "https://www.youtube.com/watch?v=3R3cvbLsbAk",
+//         "category": "Design",
+//         "id": 12
+//     }
+// }
+// postData(url, data)
+//     .then(responseData => {
+//         console.log('Dữ liệu đã được thêm thành công:', responseData.video);
+//     })
+//     .catch(error => {
+//         console.error('Lỗi khi gửi dữ liệu:', error);
+//     });
+
+
 
 // ------------------Method: DELETE------------------
 // let url = 'https://api.sheety.co/43f2a026e71c03344292f196d03fad25/youflix/videos/2';
@@ -89,6 +83,40 @@ postData(url, data)
 // })
 //     .then(() => {
 //         console.log('Object deleted');
+//     });
+
+
+// -------------------- Promise delete---------------
+// function deleteData(url) {
+//     return new Promise((resolve, reject) => {
+//         fetch(url, {
+//             method: 'DELETE',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 // Các headers khác nếu cần thiết
+//             },
+//             body: JSON.stringify(data),
+//         })
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error(`HTTP error! Status: ${response.status}`);
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 resolve(data);
+//             })
+//             .catch(error => {
+//                 reject(error);
+//             });
+//     })
+// }
+// deleteData(url)
+//     .then(() => {
+//         console.log('Dữ liệu đã được xóa thành công:');
+//     })
+//     .catch(error => {
+//         console.error('Lỗi khi xóa dữ liệu:', error);
 //     });
 
 
@@ -121,3 +149,46 @@ postData(url, data)
 //         console.log('Error: ' + err);
 //     });
 
+// -------------------- Promise put---------------
+ 
+function putData(url, data) {
+    return new Promise((resolve, reject) => {
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                // Các headers khác nếu cần thiết
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+const data = {
+    video:
+    {
+        "name": "Why cartoon characters wear gloves",
+        "url": "https://www.youtube.com/watch?v=3R3cvbLsbAk",
+        "category": "Design",
+        "id": 2
+    }
+}
+putData(url, data)
+    .then(() => {
+        console.log('Dữ liệu đã được sửa thành công:');
+    })
+    .catch(error => {
+        console.error('Lỗi khi sửa dữ liệu:', error);
+    });
